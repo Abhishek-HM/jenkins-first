@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    stages {
+
+        stage("Source") {
+            agent any
+            steps {
+                git branch: 'main', url: 'https://github.com/Abhishek-HM/jenkins-first.git'
+            }
+        }
+
+
+        stage("Build") {
+            agent any
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage("SonarQube Analysis") {
+            agent any
+            steps {
+                sh 'mvn clean verify sonar:sonar -Dsonar.token3=
+            }
+        }
+
+        stage('Approve Deployment') {
+            agent any
+            input {
+                message "Do You want proceed for deployment?"
+            }
+            steps {
+                //add deploy steps & Alerts below
+                sh 'echo "Deploying into Server"'
+
+            }
+        }
+    }
+}
