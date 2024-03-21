@@ -21,7 +21,7 @@ pipeline {
             agent any
             steps {
                 def sonarQubeUsername=credentials('admin')
-                def sonarQubePassword=credentials('admin@123')
+                def sonarQubePassword=credentials('admin123')
                 sh 'mvn clean verify sonar:sonar -Dsonar.login=$sonarQubeUsername -Dsonar.password=$sonarQubePassword
             }
         }
