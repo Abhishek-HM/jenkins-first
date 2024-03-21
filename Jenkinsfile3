@@ -17,11 +17,11 @@ pipeline {
             }
         }
 
-        stage("SonarQube Static Code Analysis"){
+        stage("SonarQube Static Code Analysis") {
         steps {
         script {
                 withSonarQubeEnv(credentialsId: 'sonar.token6') {
-                bat 'mvn sonar:sonar'
+                sh 'mvn sonar:sonar'
             }
         }
     }
