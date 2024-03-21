@@ -20,7 +20,7 @@ pipeline {
         stage("SonarQube Analysis") {
             agent any
             steps {
-                sh 'mvn clean verify sonar:sonar -Dsonar.token3=
+                sh 'mvn clean verify sonar:sonar -Dsonar.login='admin' -Dsonar.password='admin@123'
             }
         }
 
