@@ -17,12 +17,14 @@ pipeline {
             }
         }
 
-        stage("SonarQube Analysis") {
-            agent any
-            steps {
-                sh 'mvn clean verify sonar:sonar -Dsonar.login='admin' -Dsonar.password='admin123'
+        stage("SonarQube Static Code Analysis"){
+        steps {
+        script {
+                withSonarQubeEnv(credentialsId: 'sonar.token6') {
+                bat 'mvn sonar:sonar'
             }
         }
+    }
 
         stage('Approve Deployment') {
             agent any
